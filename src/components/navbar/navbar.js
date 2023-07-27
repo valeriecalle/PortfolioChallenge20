@@ -1,6 +1,6 @@
 // import { AppBar, Icon, List, Toolbar, makeStyles } from '@material-ui/core';
-import { AppBar,  IconButton,  List, Toolbar, makeStyles } from '@material-ui/core';
-import React from 'react';
+import { AppBar,  Drawer,  IconButton,  List, Toolbar, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
 import logo from "../../images/Free_Sample_By_Wix.jpg";
 // import { Link, animateScroll as scroll } from 'react-scroll'; 
 import { Link } from 'react-scroll'; 
@@ -8,7 +8,9 @@ import  InfoTwoToneIcon  from '@material-ui/icons/InfoTwoTone';
 import  BuildTwoToneIcon from '@material-ui/icons/BuildTwoTone';
 import  EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
 import  ContactMailTwoToneIcon from "@material-ui/icons/Menu";
-import MenuIcon from "@material-ui/icons/ContactMailTwoTone"
+import MenuIcon from "@material-ui/icons/ContactMailTwoTone";
+import CancelIcon from "@material-ui/icons/Cancel"
+
 
 //libreria para el scrool del menur el as es un alias 
 //instalamos la librería que nos permite hacer el scrool del menu npm add react-scroll
@@ -50,9 +52,12 @@ const links = [
 
 const Navbar = () => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false) ;// aqui definimos el estado del menu lateral, primero loponemos en false y cuando se pone true aparece el boton de cerrar
     return (
-        //vamos a crear la barra de navegación con la libreria material IU
-        <AppBar position='sticky' className={classes.logo}>
+        //añado este reactfarmer para que no se dañe la estructura
+       //vamos a crear la barra de navegación con la libreria material IU
+        <> 
+         <AppBar position='sticky' className={classes.logo}>
             
             <Toolbar className={classes.toolbar}>
                 <img src={logo} className={classes.logo} alt="logo" />
@@ -81,7 +86,22 @@ const Navbar = () => {
 
             </Toolbar>
         </AppBar>
-    )
+               
+            <Drawer anchor="right" open={open} onClose={()=>setOpen(false)}>
+                
+                <IconButton  className={classes.menubutton} onClick={()=>setOpen(false)}>
+                    <CancelIcon >
+
+                    </CancelIcon>
+                </IconButton>
+
+
+            </Drawer>
+
+        </>
+            
+
+    ) 
 }
 
 const useStyles = makeStyles ((theme)=>({

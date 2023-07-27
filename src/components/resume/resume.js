@@ -17,7 +17,7 @@ const useStyles = makeStyles ((theme)=>({
       minHeight:"100vh",
     },
     sectiondark:{
-      background: "#8093f1",
+      background: "#FFFFFF",
       color:"#000",
 
     },
