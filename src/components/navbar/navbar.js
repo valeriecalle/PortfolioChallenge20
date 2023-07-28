@@ -1,5 +1,5 @@
 // import { AppBar, Icon, List, Toolbar, makeStyles } from '@material-ui/core';
-import { AppBar,  Drawer,  IconButton,  List, Toolbar, makeStyles } from '@material-ui/core';
+import { AppBar,  Divider,  Drawer,  IconButton,  List, ListItem, ListItemIcon, Toolbar, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import logo from "../../images/Free_Sample_By_Wix.jpg";
 // import { Link, animateScroll as scroll } from 'react-scroll'; 
@@ -10,6 +10,9 @@ import  EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
 import  ContactMailTwoToneIcon from "@material-ui/icons/Menu";
 import MenuIcon from "@material-ui/icons/ContactMailTwoTone";
 import CancelIcon from "@material-ui/icons/Cancel"
+import { Dehaze, OpenInNew } from '@material-ui/icons';
+// import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+
 
 
 //libreria para el scrool del menur el as es un alias 
@@ -52,7 +55,7 @@ const links = [
 
 const Navbar = () => {
     const classes = useStyles();
-    const [open, setOpen] = useState(false) ;// aqui definimos el estado del menu lateral, primero loponemos en false y cuando se pone true aparece el boton de cerrar
+    const [open, setOpen] = useState(true) ;// aqui definimos el estado del menu lateral, primero loponemos en false y cuando se pone true aparece el boton de cerrar
     return (
         //añado este reactfarmer para que no se dañe la estructura
        //vamos a crear la barra de navegación con la libreria material IU
@@ -79,8 +82,10 @@ const Navbar = () => {
                     }
                 </List>   
                     {/* Menu Hamburguesa */}
-                <IconButton edge="end" className={classes.menubutton}>
-                    <MenuIcon fontSize='large' />
+                <IconButton edge="end" 
+                    className={classes.menubutton}
+                        onClick={()=>setOpen(!open)}> 
+                    <Dehaze fontSize='large' />
                 </IconButton>
                     
 
@@ -89,11 +94,35 @@ const Navbar = () => {
                
             <Drawer anchor="right" open={open} onClose={()=>setOpen(false)}>
                 
-                <IconButton  className={classes.menubutton} onClick={()=>setOpen(false)}>
+                <IconButton  onClick={()=>setOpen(false)}>
                     <CancelIcon >
 
                     </CancelIcon>
                 </IconButton>
+                <Divider></Divider>
+
+                    {
+                        links.map(({id, text, icon}, index)=>(
+                            //pasamos el html lo que se muestra 1:10 min, esto permite hacer el scroll al dar clicke 
+                            //en las opciones del menu.  https://github.com/fisshy/react-scroll esta es la docuemntación
+                            <Link key={index}
+                                to={id}
+                                spy={true}
+                                activeClass="active"
+                                smooth={true}
+                                duration={500}
+                                offset={-85}>
+                                <ListItem>
+                                    <span>
+                                        <ListItemIcon>
+                                            {icon}
+                                        </ListItemIcon>
+                                    </span> {text}
+                                </ListItem>
+                            </Link>
+
+                        ))
+                    }
 
 
             </Drawer>
@@ -146,7 +175,7 @@ menubutton:{
     display: "none",
     [theme.breakpoints.down("sm")]:{
         display: "block",
-        color: "tomato",
+        color: "#323F49",
         position: "absolute",
         top: 0,
         right: 10,
