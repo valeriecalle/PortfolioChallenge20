@@ -15,7 +15,7 @@ const Aboutme = ({id, title, dark }) => {
     );
 };
 
-// Estilo para cada seccion
+// Section Style
 const useStyles = makeStyles ((theme)=>({
     section: {
       minHeight:"100vh",

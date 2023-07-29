@@ -12,7 +12,6 @@ function App() {
   return (
     <div className={classes.root}>
       <Navbar />
-      {/* el id sirve para la navegacion y el title es el titulo de cada pagina */}
       <Aboutme title="About Me" id="aboutme" dark={true} />
       <Portfolio title="Portfolio" id="portfolio" dark={true} />
       <Resume title="Resume" id="resume" dark={true} />
@@ -24,7 +23,7 @@ function App() {
 }
 
 
-//aqui escribimos todas las clases y los estilos
+
 const useStyles = makeStyles ((theme)=>({
   root: {
     

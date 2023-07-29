@@ -2,23 +2,15 @@
 import { AppBar,  Divider,  Drawer,  IconButton,  List, ListItem, ListItemIcon, Toolbar, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import logo from "../../images/Free_Sample_By_Wix.jpg";
-// import { Link, animateScroll as scroll } from 'react-scroll'; 
 import { Link } from 'react-scroll'; 
-import  InfoTwoToneIcon  from '@material-ui/icons/InfoTwoTone';
-import  BuildTwoToneIcon from '@material-ui/icons/BuildTwoTone';
-import  EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
-import  ContactMailTwoToneIcon from "@material-ui/icons/Menu";
+
 import MenuIcon from "@material-ui/icons/ContactMailTwoTone";
 import CancelIcon from "@material-ui/icons/Cancel"
 import { Dehaze, OpenInNew } from '@material-ui/icons';
-// import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-
-
-
-//libreria para el scrool del menur el as es un alias 
-//instalamos la librería que nos permite hacer el scrool del menu npm add react-scroll
-// import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
-//material-ui-icons  https://mui.com/material-ui/material-icons/
+import CameraFrontIcon from '@material-ui/icons/CameraFront';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 
 
 
@@ -26,39 +18,36 @@ const links = [
     {
         id: "aboutme",
         text: "About me",
-        icon: <InfoTwoToneIcon />
-        // icon: <ContactMailTwoToneIcon/>
+        icon: <CameraFrontIcon fontSize='large' />
+        
     },
 
     {
         id: "portfolio",
         text: "PortFolio",
-        icon: <BuildTwoToneIcon />
-        // icon: <ContactMailTwoToneIcon/>
+        icon: <BusinessCenterIcon fontSize='large' />
     },
 
     {
         id: "resume",
         text: "Resume",
-        icon: <ContactMailTwoToneIcon />
-        // icon: <ContactMailTwoToneIcon/>
+        icon: <AssignmentIndIcon fontSize='large'/>
+      
     },
 
     {
         id: "contact",
         text: "Contact",
-        icon: <EmojiObjectsTwoToneIcon />
-        // icon: <ContactMailTwoToneIcon/>
-     }
+        icon: <ContactPhoneIcon fontSize='large'/>
+    }
 ]
 
 
 const Navbar = () => {
     const classes = useStyles();
-    const [open, setOpen] = useState(true) ;// aqui definimos el estado del menu lateral, primero loponemos en false y cuando se pone true aparece el boton de cerrar
+    const [open, setOpen] = useState(true) ;
     return (
-        //añado este reactfarmer para que no se dañe la estructura
-       //vamos a crear la barra de navegación con la libreria material IU
+        
         <> 
          <AppBar position='sticky' className={classes.logo}>
             
@@ -67,8 +56,6 @@ const Navbar = () => {
                 <List className={classes.menu}>
                     {
                         links.map(({id, text}, index)=>(
-                            //pasamos el html lo que se muestra 1:10 min, esto permite hacer el scroll al dar clicke 
-                            //en las opciones del menu.  https://github.com/fisshy/react-scroll esta es la docuemntación
                             <Link key={index} 
                             to={id} 
                             spy={true} 
@@ -81,7 +68,7 @@ const Navbar = () => {
                         ))
                     }
                 </List>   
-                    {/* Menu Hamburguesa */}
+                 
                 <IconButton edge="end" 
                     className={classes.menubutton}
                         onClick={()=>setOpen(!open)}> 
@@ -95,24 +82,24 @@ const Navbar = () => {
             <Drawer anchor="right" open={open} onClose={()=>setOpen(false)}>
                 
                 <IconButton  onClick={()=>setOpen(false)}>
-                    <CancelIcon >
+                    
+                    <CancelIcon  fontSize='large'/>
 
-                    </CancelIcon>
+                    
                 </IconButton>
                 <Divider></Divider>
 
                     {
                         links.map(({id, text, icon}, index)=>(
-                            //pasamos el html lo que se muestra 1:10 min, esto permite hacer el scroll al dar clicke 
-                            //en las opciones del menu.  https://github.com/fisshy/react-scroll esta es la docuemntación
                             <Link key={index}
+                                className={classes.sidebar}
                                 to={id}
                                 spy={true}
                                 activeClass="active"
                                 smooth={true}
                                 duration={500}
                                 offset={-85}>
-                                <ListItem>
+                                <ListItem component = "h3">
                                     <span>
                                         <ListItemIcon>
                                             {icon}
@@ -123,7 +110,6 @@ const Navbar = () => {
 
                         ))
                     }
-
 
             </Drawer>
 
@@ -137,11 +123,11 @@ const useStyles = makeStyles ((theme)=>({
     
     logo: {
         height:"5.5rem",
-        objectFit: "contain",   // esto nos asegura que la imagen no se va a distorcionar
-        "&:hover": {cursor:"pointer"} //al pasar el mouse se convierte en mano o sea se ejecuta una acción
+        objectFit: "contain",   
+        "&:hover": {cursor:"pointer"} 
     },
 
-    //barra de navegación
+    
     toolbar:{
         backgroundColor:"#fff",
         top:0, left: 0, right: 0,zIndex: 999,
@@ -151,7 +137,7 @@ const useStyles = makeStyles ((theme)=>({
     },
 
     menu: {
-        //hacerlo responsivo desaparece el menu
+       
         [theme.breakpoints.down("sm")]:{
             display:"none"
         },
@@ -180,7 +166,26 @@ menubutton:{
         top: 0,
         right: 10,
     }
+},
+
+sidebar:{
+    width:"40vw",
+    [theme.breakpoints.down("sm")]:{
+        width: "60vw"
+    },
+    
+    "& h3":{
+        margin: theme.spacing(7,0,0,5),
+        fontSize: "1.4rem",
+    },
+
+    "& h3:hover":{
+        cursor: "pointer",
+        color: "#2667FF",
+        
+        },
 }
+
 
   }))
 
