@@ -14,38 +14,40 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 
 
 
-const links = [
-    {
-        id: "aboutme",
-        text: "About me",
-        icon: <CameraFrontIcon fontSize='large' />
-        
-    },
-
-    {
-        id: "portfolio",
-        text: "PortFolio",
-        icon: <BusinessCenterIcon fontSize='large' />
-    },
-
-    {
-        id: "resume",
-        text: "Resume",
-        icon: <AssignmentIndIcon fontSize='large'/>
-      
-    },
-
-    {
-        id: "contact",
-        text: "Contact",
-        icon: <ContactPhoneIcon fontSize='large'/>
-    }
-]
 
 
 const Navbar = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(true) ;
+    
+    const links = [
+        {
+            id: "aboutme",
+            text: "About me",
+            icon: <CameraFrontIcon fontSize='large' />
+            
+        },
+    
+        {
+            id: "portfolio",
+            text: "Portfolio",
+            icon: <BusinessCenterIcon fontSize='large' />
+        },
+    
+        {
+            id: "resume",
+            text: "Resume",
+            icon: <AssignmentIndIcon fontSize='large'/>
+          
+        },
+    
+        {
+            id: "contact",
+            text: "Contact",
+            icon: <ContactPhoneIcon fontSize='large'/>
+        }
+    ]
+    
     return (
         
         <> 
