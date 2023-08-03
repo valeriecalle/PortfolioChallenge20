@@ -80,7 +80,18 @@ const useStyles = makeStyles ((theme)=>({
       height: "auto",
       ObjectFit: "cover",
       margin: theme.spacing(3),
-         }
+    },
+
+    cardcontent:{
+      marginTop: theme.spacing(2),
+      "& p": {
+        marginTop: theme.spacing(5),
+      }
+    },
+
+    
+
+
   }))
 
 export default Aboutme;
